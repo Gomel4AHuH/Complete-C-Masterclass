@@ -1,5 +1,5 @@
-﻿using System.Windows;
-using System.Windows.Controls;
+﻿using System;
+using System.Windows;
 using WpfDemo.Data;
 
 namespace WpfDemo
@@ -9,33 +9,24 @@ namespace WpfDemo
     /// </summary>
     public partial class MainWindow : Window
     {
-        private readonly Person prsn = new("Andrei", 44);
+        public List<Person> persons = [];
+
         public MainWindow()
         {
             InitializeComponent();
-                                 
-            this.DataContext = prsn;
-            
-            //MainContent.Content = new LoginView();
+            persons.Add(new Person("Andrei", 44));
+            persons.Add(new Person("Alex", 18));
+            persons.Add(new Person("Egor", 15));
 
-            /*
-            Button btn = new();
-            btn.Content = "B";
-            Grid.SetRow(btn, 3);
-            Grid.SetColumn(btn, 4);
-
-            Grid grd = (Grid)FindName("mainGrid");
-
-            grd.Children.Add(btn);
-            */
+            ListBoxPersons.ItemsSource = persons;
 
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void ListBoxPersons_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            string personData = prsn.Name + " is " + prsn.Age + " years old.";
-            MessageBox.Show(personData);
-            
+            Person person = ListBoxPersons.SelectedItem as Person;
+
+            MessageBox.Show(person.Name + " is " + person.Age + " years old.");
         }
     }
 }
