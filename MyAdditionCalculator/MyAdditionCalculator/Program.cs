@@ -1,15 +1,22 @@
-﻿Console.WriteLine("Enter the first number:");
+﻿using System.Globalization;
 
-int firstNumber = int.Parse(Console.ReadLine());
+Console.WriteLine("Enter the first number:");
 
-Console.WriteLine($"The first number is {firstNumber}");
+double firstNumber = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
+
+Console.WriteLine($"The first number is {firstNumber.ToString(CultureInfo.InvariantCulture)}");
 
 Console.WriteLine("Enter the second number:");
 
-int secondNumber = int.Parse(Console.ReadLine());
+double secondNumber = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
 
-Console.WriteLine($"The second number is {secondNumber}");
+double sum = firstNumber + secondNumber;
 
-Console.WriteLine($"The sum of {firstNumber} and {secondNumber} is {firstNumber + secondNumber}");
+Console.WriteLine($"The second number is {secondNumber.ToString(CultureInfo.InvariantCulture)}");
+
+Console.WriteLine($"The sum of" +
+    $" {firstNumber.ToString(CultureInfo.InvariantCulture)} and" +
+    $" {secondNumber.ToString(CultureInfo.InvariantCulture)} is" +
+    $" {sum.ToString(CultureInfo.InvariantCulture)}", CultureInfo.InvariantCulture);
 
 Console.ReadKey();
